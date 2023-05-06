@@ -9,30 +9,6 @@ const Header = () => {
   const handleToggle = () => {
     setIsActive(!isActive);
   };
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUsername('');
-  };
-
-  const handleLogin = () => {
-    fetch('https://fakestoreapi.com/auth/login',{
-      method:'POST',
-      body:JSON.stringify({
-        username: "mor_2314",
-        password: "83r5^_"
-      })
-    })
-    .then(res=>res.json())
-    .then(json=>{
-      if (json.token && json.username === 'mor_2314' && json.password === '83r5^_') {
-        setIsLoggedIn(true);
-        setUsername(json.username);
-        console.log('Login success!');
-      } else {
-        console.log('Login failed!');
-      }
-    });
-  };
   
 
   return (
@@ -62,33 +38,6 @@ const Header = () => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-            {!isLoggedIn && ( 
-                <a className="button is-outlined" onClick={handleLogin} href='/login'>
-                  <span className="icon" style={{ color: '#d9ac7c' }}>
-                    <i className="fas fa-user"></i>
-                  </span>
-                  <span style={{ color: '#d9ac7c' }}>Login</span>
-                </a>
-              )}
-              {isLoggedIn && (
-                <div className="dropdown is-right is-hoverable">
-                  <div className="dropdown-trigger">
-                    <button className="button is-outlined" aria-haspopup="true" aria-controls="dropdown-menu">
-                      <span style={{ color: '#d9ac7c' }}>{username}</span>
-                      <span className="icon is-small">
-                        <i className="fas fa-angle-down" aria-hidden="true"></i>
-                      </span>
-                    </button>
-                  </div>
-                  <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                    <div className="dropdown-content">
-                      <a className="dropdown-item" onClick={handleLogout}>
-                        Logout
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              )}
               <a className="button is-outlined" href="/cart">
                 <span className="icon" style={{ color: '#d9ac7c' }}>
                   <i className="fas fa-shopping-cart"></i>

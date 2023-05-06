@@ -3,6 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);

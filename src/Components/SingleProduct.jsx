@@ -33,6 +33,7 @@ const SingleProduct = ({ match }) => {
   const handleAddToCart = () => {
     const newCart = [...cart, product];
     setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   return (
@@ -76,6 +77,7 @@ const SingleProduct = ({ match }) => {
                   Add to Cart
                 </button>
               </div>
+              
               <div className="control">
                 <button className="button is-link">Buy Now</button>
               </div>
