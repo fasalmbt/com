@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import SingleProduct from "./Components/SingleProduct";
 import Cart from "./Components/Cart";
+import Checkout from "./Components/Checkout";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/products/:id" component={SingleProduct} />
           <Route path="/cart" component={Cart} />
+          <Route path="/checkout" component={Checkout} />
         </div>
       </BrowserRouter>
   );

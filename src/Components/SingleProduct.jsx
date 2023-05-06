@@ -3,6 +3,7 @@ import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Header from "./Header";
+import StarRating from "./StarRating";
 
 const SingleProduct = ({ match }) => {
   const [product, setProduct] = useState({});
@@ -61,12 +62,12 @@ const SingleProduct = ({ match }) => {
             <h1 className="title">{product.title}</h1>
             <p className="subtitle">${product.price}</p>
             <div className="is-flex is-align-items-center">
-              <FaStar className="has-text-warning" />
-              <FaStar className="has-text-warning" />
-              <FaStar className="has-text-warning" />
-              <FaStar className="has-text-warning" />
-              <FaStar className="has-text-grey-light" />
-              <p className="ml-2">(10)</p>
+              {product.rating && (
+                <div className="flex items-center">
+                  <StarRating rating={product.rating.rate} />
+                  <p className="ml-2">{product.rating.rate} from ({product.rating.count} reviews)</p>
+                </div>
+              )}
             </div>
             <hr />
             <p>{product.description}</p>
@@ -77,7 +78,7 @@ const SingleProduct = ({ match }) => {
                   Add to Cart
                 </button>
               </div>
-              
+
               <div className="control">
                 <button className="button is-link">Buy Now</button>
               </div>

@@ -25,24 +25,21 @@ const ProductList = () => {
       });
   }, [selectedCategory]);
 
-  const handleAddToCart = (productId) => {
-    console.log(`Added product with ID ${productId} to cart`);
-  };
-
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
   };
 
   const handleSearch = async (event) => {
     event.preventDefault();
-    const response = await axios.get(
-      `https://fakestoreapi.com/products/category/${searchTerm}`
+    const response = await axios.get(`https://fakestoreapi.com/products`);
+    const filteredProducts = response.data.filter((product) =>
+      Object.values(product).some(
+        (value) =>
+          typeof value === "string" &&
+          value.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     );
-    if (Array.isArray(response.data)) {
-      setProducts(response.data);
-    } else {
-      setProducts([]);
-    }
+    setProducts(filteredProducts);
   };
 
   return (
@@ -56,7 +53,7 @@ const ProductList = () => {
                   <input
                     className="input"
                     type="text"
-                    placeholder="Search by category"
+                    placeholder="Search for products"
                     value={searchTerm}
                     onChange={(event) => setSearchTerm(event.target.value)}
                   />
@@ -136,15 +133,11 @@ const ProductList = () => {
                     </p>
                   </Link>
                   <p className="subtitle is-6">${product.price}</p>
-                  <button
-                    className="button is-primary"
-                    onClick={() => handleAddToCart(product.id)}
-                  >
-                    <span>Add to Cart</span>
-                    <span className="icon">
-                      <FontAwesomeIcon icon={faCartPlus} />
-                    </span>
-                  </button>
+                  <Link to={`/products/${product.id}`}>
+                    <button className="button is-link">
+                      <span>View details</span>
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
