@@ -5,6 +5,7 @@ import Home from "./Pages/Home";
 import SingleProduct from "./Components/SingleProduct";
 import Cart from "./Components/Cart";
 import Checkout from "./Components/Checkout";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
   return (
